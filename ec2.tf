@@ -79,6 +79,6 @@ user_data = <<-EOF
 
 
   tags = {
-    Name = "InstanciaWeb1"
+    Name = "InstanciaWeb2"
   }
 }
