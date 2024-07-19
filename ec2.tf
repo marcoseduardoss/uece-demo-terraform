@@ -5,7 +5,7 @@ resource "aws_instance" "instancia_1" {
 
   security_groups = [aws_security_group.elb_sg.name]
   depends_on = [aws_db_instance.meu_rds]
-  availability_zone = "us-east-1a"  
+  #availability_zone = "us-east-1a"  
 
 user_data = <<-EOF
                 #!/bin/bash
@@ -49,7 +49,7 @@ resource "aws_instance" "instancia_2" {
 
   security_groups = [aws_security_group.elb_sg.name]
   depends_on = [aws_db_instance.meu_rds]
-  availability_zone = "us-east-1b" 
+  #availability_zone = "us-east-1b" 
 
 user_data = <<-EOF
                 #!/bin/bash
