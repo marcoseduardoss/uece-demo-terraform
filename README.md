@@ -86,6 +86,6 @@ No arquivo `output.tf`, são definidas as saídas do Terraform:
 4. **Verificar as Saídas**:
    Após a aplicação, verifique as saídas definidas no arquivo `output.tf`.
 
-## Considerações Finais
+## Observações Gerais
 
-Certifique-se de substituir as AMIs, chaves SSH e outras configurações específicas conforme necessário para o seu ambiente.
+Antes de executar o projeto, certifique-se de substituir as AMIs, chaves SSH e outras configurações específicas conforme necessário para o seu ambiente.
