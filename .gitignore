@@ -35,7 +35,7 @@ Icon
 .Spotlight-V100
 .TemporaryItems
 .Trashes
-.VolumeIcon.icns
+.VolumeIcon.icnste
 .com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
@@ -52,6 +52,7 @@ Temporary Items
 ### Terraform ###
 # Local .terraform directories
 **/.terraform/*
+.terraform.lock.hcl
 
 # .tfstate files
 *.tfstate

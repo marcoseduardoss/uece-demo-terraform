@@ -31,7 +31,7 @@ def escrever_conteudos(arquivo_saida, caminho_raiz, extensoes, pastas_excluidas)
 caminho_projeto_maven = '.'  # Use '.' para denotar o diretório atual se o script estiver na raiz do projeto
 
 # Arquivo de saída onde o conteúdo será concatenado
-arquivo_de_saida = 'conteudo_deste_projeto.txt'
+arquivo_de_saida = 'bkp.txt'
 
 # Executa a função
 escrever_conteudos(arquivo_de_saida, caminho_projeto_maven, EXTENSIONS, EXCLUDED_DIRS)
