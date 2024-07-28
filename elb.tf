@@ -29,14 +29,15 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   subnets            = ["subnet-db701c96", "subnet-e4df06bb"]
-  security_groups    = [aws_security_group.allow_web.id]
+  security_groups    = [aws_security_group.web.id]
 }
+
 
 resource "aws_lb_target_group" "target_group" {
   name     = "default-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id      = VPC.id
+  vpc_id      = aws_security_group.web.vpc_id
 }
 
 resource "aws_lb_target_group_attachment" "tg_ec2_attachment" {
