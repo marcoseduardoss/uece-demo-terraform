@@ -1,13 +1,11 @@
 resource "aws_instance" "instancia_1" {
-  ami           = "ami-04a81a99f5ec58529"  # Substituir por um AMI válido
-  instance_type = "t2.micro"
-  key_name      = "terraform-key"//chave ssh configura no console aws
-
+  ami           = var.ami
+  instance_type = var.instance_type
+  key_name      = var.key_name
   security_groups = [aws_security_group.elb_sg.name]
   depends_on = [aws_db_instance.meu_rds]
-  #availability_zone = "us-east-1a"  
 
-user_data = <<-EOF
+  user_data = <<-EOF
                 #!/bin/bash
                 apt update
                 apt install -y apache2 mysql-client php php-mysql libapache2-mod-php wget unzip
@@ -26,32 +24,28 @@ user_data = <<-EOF
 
                 # Atualizar arquivo de configuração do WordPress com detalhes do banco de dados
                 sed -i "s/database_name_here/${aws_db_instance.meu_rds.db_name}/" /var/www/html/wp-config.php
-                sed -i "s/username_here/admin/" /var/www/html/wp-config.php
-                sed -i "s/password_here/MinhaSenhaSegura123/" /var/www/html/wp-config.php
+                sed -i "s/username_here/${var.db_username}/" /var/www/html/wp-config.php
+                sed -i "s/password_here/${var.db_password}/" /var/www/html/wp-config.php
                 sed -i "s/localhost/${aws_db_instance.meu_rds.address}/" /var/www/html/wp-config.php
 
                 # Iniciar e habilitar Apache
                 systemctl start apache2
                 systemctl enable apache2
                 EOF
-
 
   tags = {
     Name = "InstanciaWeb1"
   }
 }
 
-
 resource "aws_instance" "instancia_2" {
-  ami           = "ami-04a81a99f5ec58529"  # Substituir por um AMI válido
-  instance_type = "t2.micro"
-  key_name      = "terraform-key"//chave ssh configura no console aws
-
+  ami           = var.ami
+  instance_type = var.instance_type
+  key_name      = var.key_name
   security_groups = [aws_security_group.elb_sg.name]
   depends_on = [aws_db_instance.meu_rds]
-  #availability_zone = "us-east-1b" 
 
-user_data = <<-EOF
+  user_data = <<-EOF
                 #!/bin/bash
                 apt update
                 apt install -y apache2 mysql-client php php-mysql libapache2-mod-php wget unzip
@@ -70,15 +64,14 @@ user_data = <<-EOF
 
                 # Atualizar arquivo de configuração do WordPress com detalhes do banco de dados
                 sed -i "s/database_name_here/${aws_db_instance.meu_rds.db_name}/" /var/www/html/wp-config.php
-                sed -i "s/username_here/admin/" /var/www/html/wp-config.php
-                sed -i "s/password_here/MinhaSenhaSegura123/" /var/www/html/wp-config.php
+                sed -i "s/username_here/${var.db_username}/" /var/www/html/wp-config.php
+                sed -i "s/password_here/${var.db_password}/" /var/www/html/wp-config.php
                 sed -i "s/localhost/${aws_db_instance.meu_rds.address}/" /var/www/html/wp-config.php
 
                 # Iniciar e habilitar Apache
                 systemctl start apache2
                 systemctl enable apache2
                 EOF
-
 
   tags = {
     Name = "InstanciaWeb2"

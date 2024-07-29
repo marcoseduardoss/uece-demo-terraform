@@ -1,7 +1,7 @@
 resource "aws_security_group" "elb_sg" {
   name        = "elb-sg"
   description = "Permite SSH e HTTP"
-  vpc_id      = "vpc-f8709985"
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 22
@@ -27,14 +27,14 @@ resource "aws_security_group" "elb_sg" {
 
 resource "aws_security_group" "rds_sg" {
   name        = "rds_sg"
-  description = "RDS security group"
-  vpc_id      = "vpc-f8709985"
+  description = "RDS Security Group"
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    security_groups = [aws_security_group.elb_sg.id]  // Ajuste aqui
+    security_groups = [aws_security_group.elb_sg.id]
   }
 
   egress {
