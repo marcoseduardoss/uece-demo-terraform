@@ -1,5 +1,5 @@
 variable "ami" {
-  description = "AMI - Imagem Ubuntu utilizada para criar as instâncias"
+  description = "AMI - Imagem utilizada para criar as instâncias"
   type        = string
 }
 

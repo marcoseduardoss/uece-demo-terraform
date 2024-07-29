@@ -38,8 +38,8 @@ As variáveis necessárias para o projeto estão definidas no arquivo `variables
 ```hcl
 ami           = "ami-04a81a99f5ec58529"
 instance_type = "t2.micro"
-key_name      = "terraform-key"
 db_username   = "admin"
+key_name      = "my-wordpress-key"
 db_password   = "MinhaSenhaSegura123"
 vpc_id        = "vpc-f8709985"
 subnet_ids    = ["subnet-db701c96", "subnet-e4df06bb"]
@@ -106,7 +106,8 @@ No arquivo `output.tf`, são definidas as saídas do Terraform:
 
 ## Observações Gerais
 
-- Antes de executar o projeto, certifique-se de substituir as AMIs, chaves SSH e outras configurações específicas conforme necessário para o seu ambiente.
+- Antes de executar o projeto, certifique-se de substituir as AMIs e outras configurações específicas conforme necessário para o seu ambiente.
+- O projeto Terraform criará automaticamente um par de chaves e usará essa chave nas instâncias EC2. 
 - As instâncias EC2 são configuradas para instalar Apache, MySQL Client, PHP e WordPress automaticamente.
 - A configuração do WordPress é atualizada automaticamente com os detalhes do banco de dados provisionado no RDS.
 - Um ALB é configurado para distribuir o tráfego entre as instâncias EC2.
