@@ -48,6 +48,7 @@ db_username   = "admin"
 db_password   = "MinhaSenhaSegura123"
 ```
 *vpc_id, subnet_ids podem ser obtidos em seu console AWS. 
+
 *aws_profile, O "profile" no Terraform permite especificar diferentes credenciais e configurações para acessar serviços á AWS, facilitando a gestão de múltiplas contas e ambientes. Para utilizá-lo, configure perfis na AWS CLI e especifique o perfil desejado no provider do Terraform. 
 
 ### Provedor AWS
