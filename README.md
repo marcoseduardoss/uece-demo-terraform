@@ -47,7 +47,7 @@ db_name       = "MeuMysql"
 db_username   = "admin"
 db_password   = "MinhaSenhaSegura123"
 ```
-* aws_profile, vpc_id, subnet_ids podem ser obtidos em seu console AWS.
+*aws_profile, vpc_id, subnet_ids podem ser obtidos em seu console AWS.
 
 ### Provedor AWS
 
