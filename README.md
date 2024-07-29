@@ -103,6 +103,10 @@ No arquivo `output.tf`, são definidas as saídas do Terraform:
    ```bash
    terraform apply
    ```
+4. **Destruir Configuração Aplicada**:
+   ```bash
+   terraform destroy
+   ```
 
 4. **Verificar as Saídas**:
    Após a aplicação, verifique as saídas definidas no arquivo `output.tf`.
