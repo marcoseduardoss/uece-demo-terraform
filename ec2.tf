@@ -1,7 +1,17 @@
+resource "aws_key_pair" "wordpress_key" {
+  key_name   = var.key_name
+  public_key = tls_private_key.wordpress_key.public_key_openssh
+}
+
+resource "tls_private_key" "wordpress_key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
 resource "aws_instance" "instancia_1" {
   ami           = var.ami
   instance_type = var.instance_type
-  key_name      = var.key_name
+  key_name      = aws_key_pair.wordpress_key.key_name
   security_groups = [aws_security_group.elb_sg.name]
   depends_on = [aws_db_instance.meu_rds]
 
@@ -41,7 +51,7 @@ resource "aws_instance" "instancia_1" {
 resource "aws_instance" "instancia_2" {
   ami           = var.ami
   instance_type = var.instance_type
-  key_name      = var.key_name
+  key_name      = aws_key_pair.wordpress_key.key_name
   security_groups = [aws_security_group.elb_sg.name]
   depends_on = [aws_db_instance.meu_rds]
 
