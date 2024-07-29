@@ -36,16 +36,16 @@ O projeto tem como objetivo a criação de uma infraestrutura na AWS que consist
 As variáveis necessárias para o projeto estão definidas no arquivo `variables.tf`. As seguintes variáveis devem ser configuradas no arquivo `terraform.tfvars`:
 
 ```hcl
+aws_profile   = "TF001"
+vpc_id        = "vpc-f8709***"
+subnet_ids    = ["subnet-db701***", "subnet-e4df0***"]
+aws_region    = "us-east-1"
 ami           = "ami-04a81a99f5ec58529"
 instance_type = "t2.micro"
-db_username   = "admin"
 key_name      = "my-wordpress-key"
-db_password   = "MinhaSenhaSegura123"
-vpc_id        = "vpc-f8709985"
-subnet_ids    = ["subnet-db701c96", "subnet-e4df06bb"]
 db_name       = "MeuMysql"
-aws_region    = "us-east-1"
-aws_profile   = "TF001"
+db_username   = "admin"
+db_password   = "MinhaSenhaSegura123"
 ```
 
 ### Provedor AWS
