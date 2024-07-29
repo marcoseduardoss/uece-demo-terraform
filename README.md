@@ -26,8 +26,27 @@ O projeto tem como objetivo a criação de uma infraestrutura na AWS que consist
 - **provider.tf**: Configuração do provedor AWS.
 - **rds.tf**: Configuração da instância RDS.
 - **sg.tf**: Configuração dos grupos de segurança (Security Groups).
+- **terraform.tfvars**: Variáveis específicas do ambiente.
+- **variables.tf**: Definição das variáveis utilizadas no projeto.
 
 ## Configurações Necessárias
+
+### Variáveis
+
+As variáveis necessárias para o projeto estão definidas no arquivo `variables.tf`. As seguintes variáveis devem ser configuradas no arquivo `terraform.tfvars`:
+
+```hcl
+ami           = "ami-04a81a99f5ec58529"
+instance_type = "t2.micro"
+key_name      = "terraform-key"
+db_username   = "admin"
+db_password   = "MinhaSenhaSegura123"
+vpc_id        = "vpc-f8709985"
+subnet_ids    = ["subnet-db701c96", "subnet-e4df06bb"]
+db_name       = "MeuMysql"
+aws_region    = "us-east-1"
+aws_profile   = "TF001"
+```
 
 ### Provedor AWS
 
@@ -35,8 +54,8 @@ No arquivo `provider.tf`, configure a região e o perfil da AWS:
 
 ```hcl
 provider "aws" {
-  region  = "us-east-1"
-  profile = "TF001"
+  region  = var.aws_region
+  profile = var.aws_profile
 }
 ```
 
@@ -64,7 +83,6 @@ No arquivo `sg.tf`, dois grupos de segurança são configurados:
 No arquivo `output.tf`, são definidas as saídas do Terraform:
 
 - `final_snapshot_id`: Identificador do snapshot final do RDS.
-- `load_balance_dns_name`: Nome DNS do Load Balancer.
 
 ## Execução
 
@@ -88,4 +106,7 @@ No arquivo `output.tf`, são definidas as saídas do Terraform:
 
 ## Observações Gerais
 
-Antes de executar o projeto, certifique-se de substituir as AMIs, chaves SSH e outras configurações específicas conforme necessário para o seu ambiente.
+- Antes de executar o projeto, certifique-se de substituir as AMIs, chaves SSH e outras configurações específicas conforme necessário para o seu ambiente.
+- As instâncias EC2 são configuradas para instalar Apache, MySQL Client, PHP e WordPress automaticamente.
+- A configuração do WordPress é atualizada automaticamente com os detalhes do banco de dados provisionado no RDS.
+- Um ALB é configurado para distribuir o tráfego entre as instâncias EC2.
